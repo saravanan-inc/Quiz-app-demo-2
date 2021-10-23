@@ -6,12 +6,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>JS Quiz</title>
+<title>Kalvithugal Quiz Project</title>
 
 <style>
-     h1 {
-    font-family:'Gabriola', serif;
-    text-align: center;
+    h1 {
+        font-family:'Gabriola', serif;
+        text-align: center;
     }
     ul {
         list-style: none;
@@ -25,14 +25,12 @@
         width: 20px;
         height: 2em;
     }
-    p {
-        font-family:'Gabriola', serif;
-    }
+
     /* Quiz Classes */
     .quizContainer {
-        background-color: white;
+        background-color: orange;
         border-radius: 6px;
-        width: 75%;
+        width: 100%;
         margin: auto;
         padding-top: 5px;
         /*-moz-box-shadow: 10px 10px 5px #888;
@@ -42,8 +40,8 @@
     }
     .quizcontainer #quiz1
     {
-    text-shadow:1px 1px 2px orange;
-    font-family:"Georgia", Arial, sans-serif;
+        text-shadow:1px 1px 2px orange;
+        font-family:"Georgia", Arial, sans-serif;
     }
     .nextButton {
         box-shadow: 3px 3px 5px #888;
@@ -89,25 +87,20 @@
         font-weight:bold;
         width: 100%;
         height: auto;
-        margin: auto;
         border-radius: 6px;
-        background-color: #f3dc45;
-        text-align: center;
+        background-color: #5C9DF2;
+        padding: 5px 10px;
     }
+
     .quizMessage {
-        background-color: peachpuff;
-        border-radius: 6px;
-        width: 20%;
+        background-color: black;
+        border-radius: 8px;
         margin: auto;
         text-align: center;
         padding: 5px;
-        font-size:20px;
-        font-weight:bold;
-        font-family:'Gabriola', serif;
-        color: red;
-        position:absolute;
-        top:80%;
-        left:40%;
+        font-size: 14px;
+        color: white;
+        border: 1px solid white;
     }
     .choiceList {
         font-family: 'Arial', serif;
@@ -119,92 +112,883 @@
         width: 40%;
         height: auto;
         border-radius: 6px;
-        background-color: linen;
+        background-color: red;
         margin: auto;
-        color:green;
+        color:white;
         text-align: center;
         font-size:25px;
         font-family:'Verdana', serif;
         font-weight:bold;
         position:absolute;
-        top:80%;
+        top:50%;
         left:30%;
+        padding: 24px;
     }
     /* End of Quiz Classes */
+    /*  */
+    .heading-quizapp {
+        background-color: red;
+        color: white;
+        padding: 10px 0;
+        border: 2px solid white;
+        border-radius: 8px;
+    }
+
+    .time-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .time-question > p {
+        background-color: black;
+        border: 2px solid white;
+        border-radius: 8px;
+        padding: 5px 10px;
+        color: white;
+        font-size: 16px;
+        font-family: auto;
+    }
+
+    .time-question > p > span {
+        background-color: red;
+        padding: 2px 10px;
+        border-radius: 24px;
+        margin-left: 5px;
+    }
+
+    /* .question::first-letter {
+        color: white;
+        background-color: black;
+        padding: 2px 15px;
+        border-radius: 24px;
+    } */
+
+    .choiceList {
+        background-color: whitesmoke;
+        border-radius: 8px;
+        padding: 10px 5px;
+    }
+
+    .choiceList > li {
+        background-color: #FFEDE5;
+        border: 1px solid #5C9DF2;
+        border-radius: 8px;
+        color: black;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        margin-bottom: 5px;
+        padding: 2px 5px;
+    }
+
+    .choiceList > li > label {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        padding-top: 5px;
+        width: 100%;
+    }
+
+    .choiceList > li > label > input {
+        margin-right: 5px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-container > button, .btn-container > a {
+        position: unset;
+        margin: unset;
+        background-color: #5C9DF2;
+        color: white;
+        font-family: serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    /* Create a custom checkbox */
+    .radio-custom-label {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .radio-custom-label input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .checkmarkk {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: rgba(0,0,0,.3);
+        border-radius: 50%;
+        border: 1px solid black;
+    }
+
+    .radio-custom-label:hover input ~ .checkmarkk {
+        background-color: #ccc;
+    }
+
+    .radio-custom-label input:checked ~ .checkmarkk {
+        background-color: #2196F3;
+    }
+
+    .checkmarkk:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .radio-custom-label input:checked ~ .checkmarkk:after {
+        display: block;
+    }
+
+    .radio-custom-label .checkmarkk:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+
+
+    /* All */
+    .submit-btn {
+       width: 100%;
+       border-radius: 24px;
+       font-weight: bolder;
+    }
+
+    .reset-btn {
+        width: fit-content;
+        border-radius: 24px
+    }
+
+
+    /* ---------------------------------------------------------------------------- */
+    * {
+  margin: 0;
+}
+html {
+  height: 100%;
+}
+body {
+  margin-top: 5px;
+  height: 100%;
+}
+.instructions-container {
+  background: #ffffff;
+  position: relative;
+  width: 100%;
+  margin: auto;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.backdrop {
+  position: fixed;
+  display: none;
+  z-index: 3;
+  background-color: #ffffff;
+  background: transparent;
+
+  width: 100%;
+  height: 100%;
+}
+.btn-sound {
+  display: none;
+}
+.timer-alert {
+  display: none;
+  color: red;
+  font-weight: bold;
+}
+.timer-popup {
+  display: none;
+  position: absolute;
+  width: 30%;
+  margin: 0 auto;
+  background: #ffffff;
+  top: 400px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid black;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 100;
+}
+
+.alert {
+  display: none;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+.timer-popup p:nth-child(2) {
+  margin-top: 10px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.time-limit {
+  cursor: pointer;
+  padding: 5px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: block;
+  width: 50%;
+  margin: 5px auto;
+  background: rgb(9, 185, 9);
+}
+
+.instruction-text {
+  padding: 5px 0 0 5px;
+  color: rgb(65, 4, 139);
+}
+.instruction-order {
+  padding: 10px;
+}
+.instruction-order li {
+  list-style-type: none;
+  position: relative;
+  color: red !important;
+  font-weight: bold;
+  line-height: 20px; /* It's needed for setting position to absolute in the next rule. */
+}
+
+.instruction-order li::before {
+  content: "\2714";
+  color: red !important;
+  position: absolute;
+  left: -30px; /* Adjust this value so that it appears where you want. */
+  font-size: 13px; /* Adjust this value so that it appears what size you want. */
+}
+.instruction-order li {
+  margin-bottom: 5px !important;
+}
+.instructions-form {
+  width: 70%;
+
+  margin: 0 auto;
+}
+
+input:focus {
+  outline: none;
+}
+.form1-name input {
+  width: 100%;
+  border: none;
+  display: inline-block;
+}
+
+.form1-title {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.instructions-form-container {
+  margin-top: 20px;
+}
+.form1-name {
+  padding: 3px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form1-name input {
+  width: 90%;
+  border-radius: 10px;
+  padding: 4px;
+  vertical-align: middle;
+}
+.form1-timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+  border: 2px solid black;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.quiz-type {
+  border: 2px solid black;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+.quiz-options {
+  width: 90%;
+  margin: 5px auto;
+}
+
+.quiz-start {
+  cursor: pointer;
+  padding: 10px;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  display: block;
+  width: 70%;
+  margin: 5px auto;
+  background: rgb(9, 185, 9);
+}
+.fa-user:before {
+  font-size: 30px;
+  vertical-align: middle;
+}
+
+.fa-clock-o:before {
+  font-size: 30px;
+}
+
+/* slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 34px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  border: 2px solid black;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  top: 2px;
+  left: 4px;
+  bottom: 4px;
+  background-color: black;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: black;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(55px);
+  background: white;
+}
+
+/* //radio button */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  border-radius: 50px;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: black;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 8px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.time-text {
+  margin-right: 30px;
+}
+.timer-popup select {
+  cursor: pointer;
+}
+
+.cancel {
+  cursor: pointer;
+  border: none;
+  background: none;
+  float: right;
+  margin: 0 10px 0 0;
+  font-size: 30px;
+}
+
+/*------ ADDED CSS ---------*/
+.slider:after {
+  content: "OFF";
+  color: black;
+  display: block;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-size: 10px;
+  font-family: Verdana, sans-serif;
+}
+
+input:checked + .slider:after {
+  content: "ON";
+  color: white;
+}
+
+/*--------- END --------*/
+
+@media only screen and (max-width: 800px) {
+  .instructions-container {
+    width: 98%;
+  }
+
+  .instructions-form {
+    width: 90%;
+  }
+  .form1-name input {
+    width: 80%;
+  }
+  .quiz-start {
+    width: 90%;
+  }
+  .timer-popup {
+    width: 80%;
+    top: 600px;
+  }
+  .time-limit {
+    width: 80%;
+  }
+  .backdrop {
+    width: 100%;
+    height: 100%;
+  }
+}
+    
 </style>
 
-    <body>
-        <div class="quizContainer container-fluid well well-lg">
-            <div id="quiz1" class="text-center">
-                <h3>KGCAS - Javascript FDP 2018</h3>
-                <h4 style="color:#FF0000;position:absolute;left:70%;top:30%;" align="center" ><span id="iTimeShow">Time Remaining: </span><br/><span id='timer' style="font-size:25px;"></span></h4>
-                <h2>jQuery Quiz</h2>
-            </div>
-            
-            <div class="question"></div>
-            <ul class="choiceList"></ul>
-            <div class="quizMessage"></div>
-            <div class="result"></div>
-            <button class="preButton">Previous Question</button>
-            <button class="nextButton">Next Question</button>
+    <body id="body">
+        <div class="backdrop"></div>
+    <!-- Timer popup open -->
+    <div class="timer-popup">
+      <p class="cancel"><i class="fa fa-close"></i></p>
+      <p>Set Timer</p>
+      <div>
+        <select name="" id="hours">
+          <option value="00">00</option>
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+        </select>
+        <span>h:</span>
+        <select name="" id="minutes"> </select>
+        <span>m:</span>
+        <select name="" id="seconds"></select>
+        <span>s</span>
+      </div>
+      <div class="timer-alert">
+        <div>
+          *Mininum time 1 min <br />
+          *Maximum time 3 hour
         </div>
+      </div>
+      <button class="time-limit" onclick="setTime()">Set Time Limit</button>
+    </div>
+    <!-- Instructions and Form container code -->
+    <div class="instructions-container">
+      <div class="instruction-text">
+        <h1>Instructions:</h1>
+      </div>
+      <div class="instruction-order">
+        <ul>
+          <li>The test contains 25 questions and there is no time limit.</li>
+          <li>
+            If you want time Limit for the Quiz You can set by clicking timer.
+          </li>
+          <li>
+            If you want to see all questions at a time, Select show all
+            questions at a time Option in Question Type.
+          </li>
+          <li>
+            If you want to see questions one by one, Select show Questions one
+            by one Option in Question Type.
+          </li>
+          <li>Select any one of the correct answers from the given options.</li>
+          <li>You will get points on the basis of your correct answer.</li>
+          <li>You can review all the answers at the end of this quiz.</li>
+          <li>The Name you enter below will appear on your certificate.</li>
+          <li>
+            To start, click the "Start Quiz" button. When finished, click the
+            "Submit" button.
+          </li>
+          <li>Click here to Play Demo Video.</li>
+        </ul>
+      </div>
+      <div class="instructions-form-container">
+        <form action="" class="instructions-form">
+          <div class="form1-title">
+            10ஆம் வகுப்பு தமிழ் இயல் – 1 Online Test
+          </div>
+          <div class="form1-name">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input
+              type="text"
+              placeholder="Enter Your Name…"
+              id="nameCurr"
+              onkeyup="seeAlert()"
+            />
+          </div>
+          <div class="form1-timer">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="time-text">Timer (optional)</span>
+            <label class="switch">
+              <input type="checkbox" id="togBtn" class="timer-btn" />
+              <div class="slider round"></div>
+            </label>
+          </div>
+          <div class="quiz-type">
+            <form action="">
+              <p>Question Type</p>
+              <div class="quiz-options">
+                <label class="container"
+                  >Show Questions one by one
+                  <input
+                    id="option1"
+                    type="radio"
+                    name="checkValue"
+                    value="option1"
+                    onchange="seeAlert()"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container"
+                  >Show all Questions at a Time
+                  <input
+                    id="option2"
+                    type="radio"
+                    name="checkValue"
+                    value="option2"
+                    onchange="seeAlert()"
+                  />
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </form>
+          </div>
+          <div>
+            <p class="alert">*Please enter the required fields</p>
+          </div>
+          <audio
+            class="btn-sound"
+            src="sounds/startsound.mp3
+          "
+          ></audio>
+          <button class="quiz-start" onclick="setQuiz()">Start Quiz</button>
+        </form>
+      </div>
+    </div>
     </body>
 
     <script>
         var questions = [{
-        question: "1. How do you write 'Hello World' in an alert box?",
+        question: "01. How do you write 'Hello World' in an alert box?",
         choices: ["msg('Hello World')", "msgBox('Hello World');", "alertBox('Hello World');", "alert('Hello World');"],
         correctAnswer: 3
     }, {
-        question: "2. How to empty an array in JavaScript?",
+        question: "02. How to empty an array in JavaScript?",
         choices: ["arrayList[]", "arrayList(0)", "arrayList.length=0", "arrayList.len(0)"],
         correctAnswer: 2
     }, {
-        question: "3. What function to add an element at the begining of an array and one at the end?",
+        question: "03. What function to add an element at the begining of an array and one at the end?",
         choices: ["push,unshift", "unshift,push", "first,push", "unshift,last"],
         correctAnswer: 1
-    }, {
-        question: "4. What will this output? var a = [1, 2, 3]; console.log(a[6]);",
-        choices: ["undefined", "0", "prints nothing", "Syntax error"],
-        correctAnswer: 0
-    }, {
-        question: "5. What would following code return? console.log(typeof typeof 1);",
-        choices: ["string", "number", "Syntax error", "undefined"],
-        correctAnswer: 0
-    },{
-        question: "6. Which software company developed JavaScript?",
-        choices: ["Mozilla", "Netscape", "Sun Microsystems", "Oracle"],
-        correctAnswer: 1
-    },{
-        question: "7. What would be the result of 3+2+'7'?",
-        choices: ["327", "12", "14", "57"],
-        correctAnswer: 3
-    },{
-        question: "8. Look at the following selector: $('div'). What does it select?",
-        choices: ["The first div element", "The last div element", "All div elements", "Current div element"],
-        correctAnswer: 2
-    },{
-        question: "9. How can a value be appended to an array?",
-        choices: ["arr(length).value;", "arr[arr.length]=value;", "arr[]=add(value);", "None of these"],
-        correctAnswer: 1
-    },{
-        question: "10. What will the code below output to the console? console.log(1 +  +'2' + '2');",
-        choices: ["'32'", "'122'", "'13'", "'14'"],
-        correctAnswer: 0
-    }];
+    },];
 
 
-    var currentQuestion = 0;
-    var viewingAns = 0;
-    var correctAnswers = 0;
-    var quizOver = false;
-    var iSelectedAnswer = [];
-        var c=180;
-        var t;
+
+
+    // -------------------------------------------------------------------------------------------
+    let btn_timer = document.querySelector(".timer-btn");
+    let time_text = document.querySelector(".time-text");
+    let cancel = document.querySelector(".cancel");
+    localStorage.clear();
+
+    //timer toggle event
+    btn_timer.addEventListener("click", () => {
+    if (btn_timer.checked) {
+        document.querySelector(".timer-popup").style.display = "block";
+        document.querySelector(".backdrop").style.display = "block";
+    } else {
+        document.querySelector(".timer-popup").style.display = "none";
+        document.querySelector(".backdrop").style.display = "none";
+        time_text.innerHTML = "Timer (optional)";
+    }
+    });
+
+    //timer popup close event
+    cancel.addEventListener("click", () => {
+    document.querySelector(".timer-popup").style.display = "none";
+    document.querySelector(".backdrop").style.display = "none";
+    btn_timer.checked = false;
+    });
+
+    //remove the error Alert
+    function seeAlert() {
+        let namecur = document.getElementById("nameCurr").value;
+        let option1 = document.getElementById("option1").checked;
+        let option2 = document.getElementById("option2").checked;
+
+        if (namecur !== "" && (option1 === true || option2 === true)) {
+            document.querySelector(".alert").style.display = "none";
+        }
+    }
+    //Submit quiz event
+    function setQuiz() {
+        let namecur = document.getElementById("nameCurr").value;
+        let option1 = document.getElementById("option1").checked;
+        let option2 = document.getElementById("option2").checked;
+
+        if (
+            namecur === "" ||
+            namecur === null ||
+            (option1 === false && option2 === false)
+        ) {
+            document.querySelector(".alert").style.display = "block";
+            return;
+        }
+
+        localStorage.setItem("namecur", namecur);
+        localStorage.setItem("option1", option1);
+        localStorage.setItem("option2", option2);
+
+        document.getElementById("body").innerHTML = ""
+        questionComponents();
+
+    }
+
+    //Timer setting event
+    function setTime() {
+    let hours = document.getElementById("hours").value;
+    let minutes = document.getElementById("minutes").value;
+    let seconds = document.getElementById("seconds").value;
+    if (minutes === "00") {
+        document.querySelector(".timer-alert").style.display = "block";
+        return;
+    } else if (hours === "03" && (minutes !== "00" || seconds !== "00")) {
+        document.querySelector(".timer-alert").style.display = "block";
+        return;
+    }
+    time_text.innerHTML =
+        "Timer(" + hours + "h-" + minutes + "m-" + seconds + "s)";
+    document.getElementById("hours").value = "00";
+
+    document.getElementById("minutes").value = "00";
+
+    document.getElementById("seconds").value = "00";
+    document.querySelector(".timer-popup").style.display = "none";
+    document.querySelector(".backdrop").style.display = "none";
+    document.querySelector(".timer-alert").style.display = "none";
+
+    localStorage.setItem("timer-hours", hours);
+    localStorage.setItem("timer-minutes", minutes);
+    localStorage.setItem("timer-seconds", seconds);
+    }
+
+    //minutes and seconds dropdown logic
+    function loaddropdown() {
+    var dropdown = document.getElementById("minutes");
+    var dropdown1 = document.getElementById("seconds");
+
+    for (var i = 0; i < 60; i++) {
+        var newOption = document.createElement("option");
+        var newOption1 = document.createElement("option");
+        newOption1.text = i;
+        newOption1.value = i;
+        newOption.text = i;
+        newOption.value = i;
+        if (i < 10) {
+        newOption.text = "0" + i;
+        newOption.value = "0" + i;
+        newOption1.text = "0" + i;
+        newOption1.value = "0" + i;
+        }
+        dropdown.appendChild(newOption);
+        dropdown1.appendChild(newOption1);
+    }
+    }
+    window.onload = loaddropdown();
+
+
+    // -------------------------------------------------------------------------------------------
+
+    // questionComponents()
+
+    function questionComponents() {
+
+    let op1 = localStorage.getItem("option1");
+    let op2 = localStorage.getItem("option2");
+
+    let showquestionstype = op1 === "true" ? "one" : "two"
+    console.log(showquestionstype);
+
+    document.getElementById("body").innerHTML = `
+        <div class="quizContainer container-fluid well well-lg">
+            <div id="quiz1" class="text-center">
+                <h3 class="heading-quizapp">10ஆம் வகுப்பு தமிழ் இயல் – 1 Online Test</h3>
+                <div class="time-question">
+                    <p id='timer'>
+                        <span id="hours">00:</span>
+                        <span id="mins">00:</span>
+                        <span id="seconds">00</span> 
+                    </p> 
+                    
+                    <div class="quizMessage"></div>
+
+                    <p>Total Questions:<span id="total-questions"></span></p>
+                </div>
+            </div>
+            
+            <div id="question-containers"></div>
+            <div class="question" id="question-default"></div>
+            <ul class="choiceList" id="choiceList-default"></ul>
+            <div class="result"></div>
+            <div class="btn-container">
+                <button class="preButton">Previous Question</button>
+                <button class="nextButton">Next Question</button>
+            </div>
+        </div>
+    `
+
+    let hourss = localStorage?.getItem("timer-hours")
+    let minutess = localStorage?.getItem("timer-minutes")
+    let secondss = localStorage?.getItem("timer-seconds")
+    let timerr;
+    if (hourss == null || minutess == null || secondss == null) {
+        timerr = undefined
+    }else {
+        timerr = Number(hourss) * 3600 + Number(minutess) * 60 + Number(secondss)
+    }
+    
+    if (showquestionstype === "one") {
+        var currentQuestion = 0;
+        var viewingAns = 0;
+        var correctAnswers = 0;
+        var quizOver = false;
+        var iSelectedAnswer = [];
+            var c=timerr;
+            var t;
+
+        let totalquestionslength = questions.length
+        let totalquestions = document.querySelector("#total-questions")
+        totalquestions.textContent = totalquestionslength
+
+
     $(document).ready(function () 
     {
+        hideScore();
+        totals = totalquestionslength
         // Display the first question
         displayCurrentQuestion();
+
         $(this).find(".quizMessage").hide();
         $(this).find(".preButton").attr('disabled', 'disabled');
         
@@ -215,6 +999,9 @@
             
             if (!quizOver) 
             {
+                totalquestionslength = totalquestionslength+1
+                totalquestions.textContent = totalquestionslength
+
                 if(currentQuestion == 0) { return false; }
         
                 if(currentQuestion == 1) {
@@ -251,6 +1038,8 @@
                 else 
                 {
                     // TODO: Remove any message -> not sure if this is efficient to call this each time....
+                    totalquestionslength = totalquestionslength-1
+                    totalquestions.textContent = totalquestionslength
                     $(document).find(".quizMessage").hide();
                     if (val == questions[currentQuestion].correctAnswer) 
                     {
@@ -297,12 +1086,11 @@
     });
 
 
-
     function timedCount()
         {
-            if(c == 185) 
+            if(c === undefined) 
             { 
-                return false; 
+                return startTimer(); 
             }
             
             var hours = parseInt( c / 3600 ) % 24;
@@ -323,48 +1111,39 @@
                         return false;
                         
             }
-            
-            /*if(c == 0 )
-            {	
-                if (!quizOver) 
-                {
-                    var val = $("input[type='radio']:checked").val();
-                    if (val == questions[currentQuestion].correctAnswer) 
-                    {
-                        correctAnswers++;
-                    }
-                    currentQuestion++; // Since we have already displayed the first question on DOM ready
-                    
-                    if (currentQuestion < questions.length) 
-                    {
-                        displayCurrentQuestion();
-                        c=15;
-                    } 
-                    else 
-                    {
-                        displayScore();
-                        $('#timer').html('');
-                        c=16;
-                        $(document).find(".nextButton").text("Play Again?");
-                        quizOver = true;
-                        return false;
-                    }
-                }
-                else 
-                { // quiz is over and clicked the next button (which now displays 'Play Again?'
-                    quizOver = false;
-                    $(document).find(".nextButton").text("Next Question");
-                    resetQuiz();
-                    displayCurrentQuestion();
-                    hideScore();
-                }		
-            }	*/
             c = c - 1;
             t = setTimeout(function()
             {
                 timedCount()
             },1000);
-        }
+    }
+    let hours =0;
+    let mins =0;
+    let seconds =0;
+
+    function startTimer(){
+        timex = setTimeout(function(){
+            seconds++;
+            if(seconds >59){seconds=0;mins++;
+            if(mins>59) {
+            mins=0;hours++;
+                if(hours <10) {$("#hours").text('0'+hours+':')} else $("#hours").text(hours+':');
+                            }
+                            
+            if(mins<10){                     
+            $("#mins").text('0'+mins+':');}       
+            else $("#mins").text(mins+':');
+                        }    
+            if(seconds <10) {
+            $("#seconds").text('0'+seconds);} else {
+            $("#seconds").text(seconds);
+            }
+            
+            
+            startTimer();
+        },1000);
+    }
+
         
         
     // This displays the current question AND the choices
@@ -389,18 +1168,59 @@
             choice = questions[currentQuestion].choices[i];
             
             if(iSelectedAnswer[currentQuestion] == i) {
-                $('<li><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+                $('<li><label class="radio-custom-label" ><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '<span class="checkmarkk"></span></label></li>').appendTo(choiceList);
             } else {
-                $('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+                $('<li><label class="radio-custom-label" ><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '<span class="checkmarkk"></span></label></li>').appendTo(choiceList);
             }
         }
     }
 
     function resetQuiz()
     {
+        let totalquestionslength = questions.length
+        let totalquestions = document.querySelector("#total-questions")
+        totalquestions.textContent = totalquestionslength
         currentQuestion = 0;
         correctAnswers = 0;
         hideScore();
+        document.getElementById("question-containers").remove();
+        totals = totalquestionslength
+        // Display the first question
+        displayCurrentQuestion();
+
+        $(this).find(".quizMessage").hide();
+        $(this).find(".preButton").attr('disabled', 'disabled');
+        
+        timedCount();
+        document.getElementById("body").innerHTML = `
+        <div class="quizContainer container-fluid well well-lg">
+                <div id="quiz1" class="text-center">
+                    <h3 class="heading-quizapp">10ஆம் வகுப்பு தமிழ் இயல் – 1 Online Test</h3>
+                    <div class="time-question">
+                        <p id='timer'>
+                            <span id="hours">00:</span>
+                            <span id="mins">00:</span>
+                            <span id="seconds">00</span> 
+                        </p> 
+                        
+                        <div class="quizMessage"></div>
+
+                        <p>Total Questions:<span id="total-questions"></span></p>
+                    </div>
+                </div>
+                
+                <div id="question-containers"></div>
+                <div class="question" id="question-default"></div>
+                <ul class="choiceList" id="choiceList-default"></ul>
+                <div class="result"></div>
+                <div class="btn-container">
+                    <button class="preButton">Previous Question</button>
+                    <button class="nextButton">Next Question</button>
+                </div>
+            </div>
+        `
+        window.location = "nothimg.html";
+        
     }
 
     function displayScore()
@@ -417,47 +1237,265 @@
     // This displays the current question AND the choices
     function viewResults() 
     {
-
+        
         if(currentQuestion == 10) { currentQuestion = 0;return false; }
         if(viewingAns == 1) { return false; }
 
         hideScore();
-        var question = questions[currentQuestion].question;
+        // var question = questions[currentQuestion].question;
         var questionClass = $(document).find(".quizContainer > .question");
         var choiceList = $(document).find(".quizContainer > .choiceList");
         var numChoices = questions[currentQuestion].choices.length;
         // Set the questionClass text to the current question
-        $(questionClass).text(question);
         // Remove all current <li> elements (if any)
         $(choiceList).find("li").remove();
         var choice;
-        
-        
-        for (i = 0; i < numChoices; i++) 
-        {
-            choice = questions[currentQuestion].choices[i];
-            
-            if(iSelectedAnswer[currentQuestion] == i) {
-                if(questions[currentQuestion].correctAnswer == i) {
-                    $('<li style="border:2px solid green;margin-top:10px;"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+        const output = [];
+
+        questions.forEach((currentQuestion, index) => {
+            const answers = [];
+
+            for (i = 0; i < numChoices; i++) 
+            {
+                choice = questions[index].choices[i];
+                
+                if(iSelectedAnswer[index] == i) {
+                    if(questions[index].correctAnswer == i) {
+                        answers.push('<li style="border:2px solid black;margin-top:10px; background-color: #65F66A"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    } else {
+                        answers.push('<li style="border:2px solid red;margin-top:10px; background-color: red"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    }
                 } else {
-                    $('<li style="border:2px solid red;margin-top:10px;"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+                    if(questions[index].correctAnswer == i) {
+                        answers.push('<li style="border:2px solid green;margin-top:10px; background-color: #65F66A"><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    } else {
+                        answers.push('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    }
                 }
-            } else {
-                if(questions[currentQuestion].correctAnswer == i) {
-                    $('<li style="border:2px solid green;margin-top:10px;"><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
-                } else {
-                    $('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>').appendTo(choiceList);
+
+            }
+
+            output.push(
+                `<div class="question">${currentQuestion.question}</div>
+                <ul class="choiceList">
+                    ${answers.join("")}
+                </ul>`
+            )
+            
+        })
+
+        document.getElementById("question-containers").innerHTML = output.join("");
+
+        document.getElementById("question-default").remove();
+        document.getElementById("choiceList-default").remove()
+    }
+
+    } else if(showquestionstype == "two") {
+        var currentQuestion = 0;
+        var viewingAns = 0;
+        var correctAnswers = 0;
+        var quizOver = false;
+        var iSelectedAnswer = [];
+            var c=timerr;
+            var t;
+
+
+        document.getElementsByClassName("result")[0].remove();
+        document.getElementById("question-default").remove();
+        document.getElementById("choiceList-default").remove()
+        message = document.getElementsByClassName("quizMessage")[0]
+        message.style.display = "none";
+
+        c = timerr
+
+        let totalquestionslength = questions.length
+        let totalquestions = document.querySelector("#total-questions")
+        totalquestions.textContent = totalquestionslength
+
+        btn = document.getElementsByClassName("btn-container")[0]
+
+        btn.innerHTML = '<button type="submit" class="submit-btn">Submit</button>'
+
+        document.getElementsByClassName("submit-btn")[0].addEventListener("click", () => {
+            viewResults();
+        })
+
+        function buildQuiz() {
+
+            const output = [];
+
+            questions.forEach((currentQuestion, index) => {
+
+                const answers = [];
+                for (letter in currentQuestion.choices) {
+                    answers.push(
+                    `<li>
+                        <label class="radio-custom-label">
+                            <input type="radio" name="question${index}" value="${letter}" required>  
+                            ${currentQuestion.choices[letter]}
+                            <span class="checkmarkk"></span>
+                        </label>    
+                    </li>`
+                    );
+                }
+
+                output.push(
+                    `<div class="question">${currentQuestion.question}</div>
+                    <ul class="choiceList">
+                        ${answers.join("")}
+                    </ul>`
+                )
+            });
+
+            document.getElementById("question-containers").innerHTML = output.join("");
+
+            }
+            timedCount();
+
+        }
+        
+        buildQuiz()
+
+        function timedCount()
+        {
+            if(c == undefined) 
+            { 
+                return startTimer(); 
+            }
+            
+            var hours = parseInt( c / 3600 ) % 24;
+            var minutes = parseInt( c / 60 ) % 60;
+            var seconds = c % 60;
+            var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);            
+            $('#timer').html(result);
+            
+            if(c == 0 )
+            {
+                        $('#iTimeShow').html('Quiz Time Completed!');
+                        $('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
+                        c=185;
+                        quizOver = true;
+                        return endGame();
+                        
+            }
+            c = c - 1;
+            t = setTimeout(function()
+            {
+                timedCount()
+            },1000);
+    }
+    let hours = 0;
+    let mins = 0;
+    let seconds = 0;
+
+    function startTimer(){
+        timex = setTimeout(function(){
+            seconds++;
+            if(seconds >59){seconds=0;mins++;
+            if(mins>59) {
+            mins=0;hours++;
+                if(hours <10) {$("#hours").text('0'+hours+':')} else $("#hours").text(hours+':');
+                            }
+                            
+            if(mins<10){                     
+            $("#mins").text('0'+mins+':');}       
+            else $("#mins").text(mins+':');
+                        }    
+            if(seconds <10) {
+            $("#seconds").text('0'+seconds);} else {
+            $("#seconds").text(seconds);
+            }
+            
+            
+            startTimer();
+        },1000);
+    }
+
+    function getselectedanswers() {
+
+        iSelectedAnswer = []
+
+        let radios = document.getElementsByTagName('input');
+        for (let i=0; i < radios.length; i++) {
+            let option = radios[i]
+            if(option.type == "radio") {
+                if(option.checked) {
+                    iSelectedAnswer.push(option.value)
                 }
             }
         }
-        
-        currentQuestion++;
-        
-        setTimeout(function()
+
+    }
+
+    // This displays the current question AND the choices
+    function viewResults() 
+    {
+        if(viewingAns == 1) { return false; }
+        getselectedanswers();
+
+        if(iSelectedAnswer.length !== questions.length) {
+            message.style.display = "block"
+            return message.textContent = "Please Select All Answers"
+        }
+
+        // var question = questions[currentQuestion].question;
+        var numChoices = questions[currentQuestion].choices.length;
+        // Set the questionClass text to the current question
+        // Remove all current <li> elements (if any)
+        var choice;
+        const output = [];
+
+        questions.forEach((currentQuestion, index) => {
+            const answers = [];
+
+            for (i = 0; i < numChoices; i++) 
             {
-                viewResults();
-            },3000);
+                choice = questions[index].choices[i];
+                
+                if(iSelectedAnswer[index] == i) {
+                    if(questions[index].correctAnswer == i) {
+                        answers.push('<li style="border:2px solid black;margin-top:10px; background-color: #65F66A"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    } else {
+                        answers.push('<li style="border:2px solid red;margin-top:10px; background-color: red"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    }
+                } else {
+                    if(questions[index].correctAnswer == i) {
+                        answers.push('<li style="border:2px solid green;margin-top:10px; background-color: #65F66A"><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    } else {
+                        answers.push('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    }
+                }
+
+            }
+
+            output.push(
+                `<div class="question">${currentQuestion.question}</div>
+                <ul class="choiceList">
+                    ${answers.join("")}
+                </ul>`
+            )
+            
+        })
+
+        document.getElementById("question-containers").innerHTML = output.join("");
+
+        endGame()
+    }
+
+    function endGame() {
+        clearTimeout(timex);
+        let x = document.getElementsByTagName("input");
+        
+        for (let y = 0; y < x.length; y++) {
+            x[y].disabled = true;
+        }
+
+        document.getElementsByClassName("quizMessage")[0].styles.display = "none"
+        document.getElementsByClassName("btn-container")[0].innerHTML = `<a class="reset-btn" href='nothimg.html'>Play Again</a> <a class="reset-btn" href="#">Show Score</a>`
+    }
+
+
+
     }
 
     </script>
