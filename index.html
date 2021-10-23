@@ -8,6 +8,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Kalvithugal Quiz Project</title>
 
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
 <style>
     h1 {
         font-family:'Gabriola', serif;
@@ -870,7 +875,7 @@ input:checked + .slider:after {
     let hours = document.getElementById("hours").value;
     let minutes = document.getElementById("minutes").value;
     let seconds = document.getElementById("seconds").value;
-    if (minutes === "00") {
+    if (minutes === "00" && seconds === "00" && hours === "00") {
         document.querySelector(".timer-alert").style.display = "block";
         return;
     } else if (hours === "03" && (minutes !== "00" || seconds !== "00")) {

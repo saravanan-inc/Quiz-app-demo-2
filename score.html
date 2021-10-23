@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalvithugal Scored</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+<link rel="icon" 
+      type="image/png" href="https://mywebstackdev.com/images/favicon.ico">
+
+<style>
+    /** Cascading Style Sheets **/
+body {
+  margin: 0;
+}
+
+main {
+  background-color: #d7e3fa;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: #18121c;
+  font-family: "Lato", Sans-Serif;
+  font-size: 32px;
+  margin-bottom: 0px;
+  /* border:1px solid red; */
+}
+
+p {
+  color: #5e636b;
+  font-family: "Lato", Sans-Serif;
+  font-size: 20px;
+  margin-top: 8px;
+}
+
+p.left {
+  color: #5e636b;
+  font-family: "Lato", Sans-Serif;
+  font-size: 20px;
+  margin-top: 8px;
+  text-align: left;
+}
+
+section {
+  background-color: #fff;
+}
+
+img {
+  border-radius: 9999px;
+  height: 125px;
+  border: double 2px black;
+}
+
+img.link {
+   width: 25px;
+   height: 25px;
+   border-radius: 0;
+}
+
+a {
+  margin: 8px;
+}
+
+/** CLASS TYPES **/
+.links {
+}
+
+.card {
+  background-color: #fff;
+  width: 400px;
+  padding: 32px;
+  /** border: 1px solid red; **/
+  border-radius: 25px;
+  text-align: center;
+}
+
+/* ---------------- */
+#tab {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#tab td, #tab th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#tab tr:nth-child(even){background-color: #f2f2f2;}
+
+#tab tr:hover {background-color: #ddd;}
+
+.btn-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-container > a {
+    background-color: #2EBE00;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 14px;
+}
+
+</style>
+
+<body onload="loadFunction()">
+<main>
+  <section class="card">
+    <img src="https://d29fhpw069ctt2.cloudfront.net/icon/image/49067/preview.svg" alt="Profile Pic">
+    <h1 id="detail-name">Roxanne Weber</h1>
+    <h3>You Successfully Completed the Quiz Conducted by Kalvithugal</h3>
+    <table id="tab">
+        <tbody onload="myFunction()">
+            <tr>
+                <td>Marks Scored</td>
+                <td>: 24/25</td>
+            </tr>
+            <tr>
+                <td>Percentage</td>
+                <td>: 67%</td>
+            </tr>
+            <tr>
+                <td>Time Taken</td>
+                <td>: 7:00 Min</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-container">
+        <a href="#">Play Again</a>
+        <a href="#">Show all scores</a>
+    </div>
+
+  </section>
+
+</main>
+</body>
+
+<script>
+    function loadFunction() {
+        document.get
+
+        let name = localStorage?.getItem("namecur");
+
+    }
+</script>
+
+</html>
