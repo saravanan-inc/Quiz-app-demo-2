@@ -1,0 +1,880 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Kalvithugal Quiz Project</title>
+
+<style>
+    h1 {
+        font-family:'Gabriola', serif;
+        text-align: center;
+    }
+    ul {
+        list-style: none;
+    }
+    li {
+        font-family:'Cambria', serif;
+        font-size: 1.5em;
+    }
+    input[type=radio] {
+        border: 0px;
+        width: 20px;
+        height: 2em;
+    }
+
+    /* Quiz Classes */
+    .quizContainer {
+        background-color: orange;
+        border-radius: 6px;
+        width: 100%;
+        margin: auto;
+        padding-top: 5px;
+        /*-moz-box-shadow: 10px 10px 5px #888;
+        -webkit-box-shadow: 10px 10px 5px #888;
+        box-shadow: 10px 10px 5px #888;*/
+        position: relative;
+    }
+    .quizcontainer #quiz1
+    {
+        text-shadow:1px 1px 2px orange;
+        font-family:"Georgia", Arial, sans-serif;
+    }
+    .nextButton {
+        box-shadow: 3px 3px 5px #888;
+        border-radius: 6px;
+    /* width: 150px;*/
+        height: 40px;
+        text-align: center;
+        background-color: lightgrey;
+        /*clear: both;*/
+        color: red;
+        font-family:'Gabriola', serif;
+        position: relative;
+        margin: auto;
+        font-size:25px;
+        font-weight:bold;
+        padding-top: 5px;
+        float:right;
+        right:30%;
+    }
+
+    .preButton {
+        box-shadow: 3px 3px 5px #888;
+        border-radius: 6px;
+        /*width: 150px;*/
+        height: 40px;
+        text-align: center;
+        background-color: lightgrey;
+        /*clear: both;*/
+        color: red;
+        font-family:'Gabriola', serif;
+        position: relative;
+        margin: auto;
+        font-size:25px;
+        font-weight:bold;
+        padding-top: 5px;
+        float:left;
+        left:30%;
+    }
+
+    .question {
+        font-family:'Century', serif;
+        font-size: 1.5em;
+        font-weight:bold;
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        background-color: #5C9DF2;
+        padding: 5px 10px;
+    }
+
+    .quizMessage {
+        background-color: black;
+        border-radius: 8px;
+        margin: auto;
+        text-align: center;
+        padding: 5px;
+        font-size: 14px;
+        color: white;
+        border: 1px solid white;
+    }
+    .choiceList {
+        font-family: 'Arial', serif;
+        color: #ed12cd;
+        font-size:15px;
+        font-weight:bold;
+    }
+    .result {
+        width: 40%;
+        height: auto;
+        border-radius: 6px;
+        background-color: red;
+        margin: auto;
+        color:white;
+        text-align: center;
+        font-size:25px;
+        font-family:'Verdana', serif;
+        font-weight:bold;
+        position:absolute;
+        top:50%;
+        left:30%;
+        padding: 24px;
+    }
+    /* End of Quiz Classes */
+    /*  */
+    .heading-quizapp {
+        background-color: red;
+        color: white;
+        padding: 10px 0;
+        border: 2px solid white;
+        border-radius: 8px;
+    }
+
+    .time-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .time-question > p {
+        background-color: black;
+        border: 2px solid white;
+        border-radius: 8px;
+        padding: 5px 10px;
+        color: white;
+        font-size: 16px;
+        font-family: auto;
+    }
+
+    .time-question > p > span {
+        background-color: red;
+        padding: 2px 10px;
+        border-radius: 24px;
+        margin-left: 5px;
+    }
+
+    /* .question::first-letter {
+        color: white;
+        background-color: black;
+        padding: 2px 15px;
+        border-radius: 24px;
+    } */
+
+    .choiceList {
+        background-color: whitesmoke;
+        border-radius: 8px;
+        padding: 10px 5px;
+    }
+
+    .choiceList > li {
+        background-color: #FFEDE5;
+        border: 1px solid #5C9DF2;
+        border-radius: 8px;
+        color: black;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        margin-bottom: 5px;
+        padding: 2px 5px;
+    }
+
+    .choiceList > li > label {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        padding-top: 5px;
+        width: 100%;
+    }
+
+    .choiceList > li > label > input {
+        margin-right: 5px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btn-container > button, .btn-container > a {
+        position: unset;
+        margin: unset;
+        background-color: #5C9DF2;
+        color: white;
+        font-family: serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    /* Create a custom checkbox */
+    .radio-custom-label {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .radio-custom-label input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .checkmark {
+        position: absolute;
+        top: 5px;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: rgba(0,0,0,.3);
+        border-radius: 50%;
+        border: 1px solid black;
+    }
+
+    .radio-custom-label:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    .radio-custom-label input:checked ~ .checkmark {
+        background-color: #2196F3;
+    }
+
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .radio-custom-label input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    .radio-custom-label .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+
+
+    /* All */
+    .submit-btn {
+       width: 100%;
+       border-radius: 24px;
+       font-weight: bolder;
+    }
+
+    .reset-btn {
+        width: fit-content;
+        border-radius: 24px
+    }
+    
+</style>
+
+    <body id="body">
+        
+    </body>
+
+    <script>
+        var questions = [{
+        question: "01. How do you write 'Hello World' in an alert box?",
+        choices: ["msg('Hello World')", "msgBox('Hello World');", "alertBox('Hello World');", "alert('Hello World');"],
+        correctAnswer: 3
+    }, {
+        question: "02. How to empty an array in JavaScript?",
+        choices: ["arrayList[]", "arrayList(0)", "arrayList.length=0", "arrayList.len(0)"],
+        correctAnswer: 2
+    }, {
+        question: "03. What function to add an element at the begining of an array and one at the end?",
+        choices: ["push,unshift", "unshift,push", "first,push", "unshift,last"],
+        correctAnswer: 1
+    },];
+
+    const showquestionstype = "one"
+    const timerr = undefined
+
+    questionComponents()
+
+    function questionComponents() {
+
+    document.getElementById("body").innerHTML = `
+        <div class="quizContainer container-fluid well well-lg">
+            <div id="quiz1" class="text-center">
+                <h3 class="heading-quizapp">10ஆம் வகுப்பு தமிழ் இயல் – 1 Online Test</h3>
+                <div class="time-question">
+                    <p id='timer'>
+                        <span id="hours">00:</span>
+                        <span id="mins">00:</span>
+                        <span id="seconds">00</span> 
+                    </p> 
+                    
+                    <div class="quizMessage"></div>
+
+                    <p>Total Questions:<span id="total-questions"></span></p>
+                </div>
+            </div>
+            
+            <div id="question-containers"></div>
+            <div class="question" id="question-default"></div>
+            <ul class="choiceList" id="choiceList-default"></ul>
+            <div class="result"></div>
+            <div class="btn-container">
+                <button class="preButton">Previous Question</button>
+                <button class="nextButton">Next Question</button>
+            </div>
+        </div>
+    `
+
+    if (showquestionstype === "one") {
+        var currentQuestion = 0;
+        var viewingAns = 0;
+        var correctAnswers = 0;
+        var quizOver = false;
+        var iSelectedAnswer = [];
+            var c=timerr;
+            var t;
+
+        let totalquestionslength = questions.length
+        let totalquestions = document.querySelector("#total-questions")
+        totalquestions.textContent = totalquestionslength
+
+
+    $(document).ready(function () 
+    {
+        hideScore();
+        totals = totalquestionslength
+        // Display the first question
+        displayCurrentQuestion();
+
+        $(this).find(".quizMessage").hide();
+        $(this).find(".preButton").attr('disabled', 'disabled');
+        
+        timedCount();
+        
+        $(this).find(".preButton").on("click", function () 
+        {		
+            
+            if (!quizOver) 
+            {
+                totalquestionslength = totalquestionslength+1
+                totalquestions.textContent = totalquestionslength
+
+                if(currentQuestion == 0) { return false; }
+        
+                if(currentQuestion == 1) {
+                $(".preButton").attr('disabled', 'disabled');
+                }
+                
+                    currentQuestion--; // Since we have already displayed the first question on DOM ready
+                    if (currentQuestion < questions.length) 
+                    {
+                        displayCurrentQuestion();
+                        
+                    } 					
+            } else {
+                if(viewingAns == 3) { return false; }
+                currentQuestion = 0; viewingAns = 3;
+                viewResults();		
+            }
+        });
+
+        
+        // On clicking next, display the next question
+        $(this).find(".nextButton").on("click", function () 
+        {
+            if (!quizOver) 
+            {
+                
+                var val = $("input[type='radio']:checked").val();
+
+                if (val == undefined) 
+                {
+                    $(document).find(".quizMessage").text("Please select an answer");
+                    $(document).find(".quizMessage").show();
+                } 
+                else 
+                {
+                    // TODO: Remove any message -> not sure if this is efficient to call this each time....
+                    totalquestionslength = totalquestionslength-1
+                    totalquestions.textContent = totalquestionslength
+                    $(document).find(".quizMessage").hide();
+                    if (val == questions[currentQuestion].correctAnswer) 
+                    {
+                        correctAnswers++;
+                    }
+                    iSelectedAnswer[currentQuestion] = val;
+                    
+                    currentQuestion++; // Since we have already displayed the first question on DOM ready
+                    if(currentQuestion >= 1) {
+                        $('.preButton').prop("disabled", false);
+                    }
+                    if (currentQuestion < questions.length) 
+                    {
+                        displayCurrentQuestion();
+                        
+                    } 
+                    else 
+                    {
+                        displayScore();
+                        $('#iTimeShow').html('Quiz Time Completed!');
+                        $('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
+                        c=185;
+                        $(document).find(".preButton").text("View Answer");
+                        $(document).find(".nextButton").text("Play Again?");
+                        quizOver = true;
+                        return false;
+                        
+                    }
+                }
+                        
+            }	
+            else 
+            { // quiz is over and clicked the next button (which now displays 'Play Again?'
+                quizOver = false; $('#iTimeShow').html('Time Remaining:'); iSelectedAnswer = [];
+                $(document).find(".nextButton").text("Next Question");
+                $(document).find(".preButton").text("Previous Question");
+                $(".preButton").attr('disabled', 'disabled');
+                resetQuiz();
+                viewingAns = 1;
+                displayCurrentQuestion();
+                hideScore();
+            }
+        });
+    });
+
+
+    function timedCount()
+        {
+            if(c === undefined) 
+            { 
+                return startTimer(); 
+            }
+            
+            var hours = parseInt( c / 3600 ) % 24;
+            var minutes = parseInt( c / 60 ) % 60;
+            var seconds = c % 60;
+            var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);            
+            $('#timer').html(result);
+            
+            if(c == 0 )
+            {
+                        displayScore();
+                        $('#iTimeShow').html('Quiz Time Completed!');
+                        $('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
+                        c=185;
+                        $(document).find(".preButton").text("View Answer");
+                        $(document).find(".nextButton").text("Play Again?");
+                        quizOver = true;
+                        return false;
+                        
+            }
+            c = c - 1;
+            t = setTimeout(function()
+            {
+                timedCount()
+            },1000);
+    }
+    let hours =0;
+    let mins =0;
+    let seconds =0;
+
+    function startTimer(){
+        timex = setTimeout(function(){
+            seconds++;
+            if(seconds >59){seconds=0;mins++;
+            if(mins>59) {
+            mins=0;hours++;
+                if(hours <10) {$("#hours").text('0'+hours+':')} else $("#hours").text(hours+':');
+                            }
+                            
+            if(mins<10){                     
+            $("#mins").text('0'+mins+':');}       
+            else $("#mins").text(mins+':');
+                        }    
+            if(seconds <10) {
+            $("#seconds").text('0'+seconds);} else {
+            $("#seconds").text(seconds);
+            }
+            
+            
+            startTimer();
+        },1000);
+    }
+
+        
+        
+    // This displays the current question AND the choices
+    function displayCurrentQuestion() 
+    {
+
+        if(c == 185) { c = 180; timedCount(); }
+        //console.log("In display current Question");
+        var question = questions[currentQuestion].question;
+        var questionClass = $(document).find(".quizContainer > .question");
+        var choiceList = $(document).find(".quizContainer > .choiceList");
+        var numChoices = questions[currentQuestion].choices.length;
+        // Set the questionClass text to the current question
+        $(questionClass).text(question);
+        // Remove all current <li> elements (if any)
+        $(choiceList).find("li").remove();
+        var choice;
+        
+        
+        for (i = 0; i < numChoices; i++) 
+        {
+            choice = questions[currentQuestion].choices[i];
+            
+            if(iSelectedAnswer[currentQuestion] == i) {
+                $('<li><label class="radio-custom-label" ><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '<span class="checkmark"></span></label></li>').appendTo(choiceList);
+            } else {
+                $('<li><label class="radio-custom-label" ><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '<span class="checkmark"></span></label></li>').appendTo(choiceList);
+            }
+        }
+    }
+
+    function resetQuiz()
+    {
+        let totalquestionslength = questions.length
+        let totalquestions = document.querySelector("#total-questions")
+        totalquestions.textContent = totalquestionslength
+        currentQuestion = 0;
+        correctAnswers = 0;
+        hideScore();
+        document.getElementById("question-containers").remove();
+        totals = totalquestionslength
+        // Display the first question
+        displayCurrentQuestion();
+
+        $(this).find(".quizMessage").hide();
+        $(this).find(".preButton").attr('disabled', 'disabled');
+        
+        timedCount();
+        document.getElementById("body").innerHTML = `
+        <div class="quizContainer container-fluid well well-lg">
+                <div id="quiz1" class="text-center">
+                    <h3 class="heading-quizapp">10ஆம் வகுப்பு தமிழ் இயல் – 1 Online Test</h3>
+                    <div class="time-question">
+                        <p id='timer'>
+                            <span id="hours">00:</span>
+                            <span id="mins">00:</span>
+                            <span id="seconds">00</span> 
+                        </p> 
+                        
+                        <div class="quizMessage"></div>
+
+                        <p>Total Questions:<span id="total-questions"></span></p>
+                    </div>
+                </div>
+                
+                <div id="question-containers"></div>
+                <div class="question" id="question-default"></div>
+                <ul class="choiceList" id="choiceList-default"></ul>
+                <div class="result"></div>
+                <div class="btn-container">
+                    <button class="preButton">Previous Question</button>
+                    <button class="nextButton">Next Question</button>
+                </div>
+            </div>
+        `
+        window.location = "nothimg.html";
+        
+    }
+
+    function displayScore()
+    {
+        $(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of: " + questions.length);
+        $(document).find(".quizContainer > .result").show();
+    }
+
+    function hideScore() 
+    {
+        $(document).find(".result").hide();
+    }
+
+    // This displays the current question AND the choices
+    function viewResults() 
+    {
+        
+        if(currentQuestion == 10) { currentQuestion = 0;return false; }
+        if(viewingAns == 1) { return false; }
+
+        hideScore();
+        // var question = questions[currentQuestion].question;
+        var questionClass = $(document).find(".quizContainer > .question");
+        var choiceList = $(document).find(".quizContainer > .choiceList");
+        var numChoices = questions[currentQuestion].choices.length;
+        // Set the questionClass text to the current question
+        // Remove all current <li> elements (if any)
+        $(choiceList).find("li").remove();
+        var choice;
+        const output = [];
+
+        questions.forEach((currentQuestion, index) => {
+            const answers = [];
+
+            for (i = 0; i < numChoices; i++) 
+            {
+                choice = questions[index].choices[i];
+                
+                if(iSelectedAnswer[index] == i) {
+                    if(questions[index].correctAnswer == i) {
+                        answers.push('<li style="border:2px solid black;margin-top:10px; background-color: #65F66A"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    } else {
+                        answers.push('<li style="border:2px solid red;margin-top:10px; background-color: red"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    }
+                } else {
+                    if(questions[index].correctAnswer == i) {
+                        answers.push('<li style="border:2px solid green;margin-top:10px; background-color: #65F66A"><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    } else {
+                        answers.push('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    }
+                }
+
+            }
+
+            output.push(
+                `<div class="question">${currentQuestion.question}</div>
+                <ul class="choiceList">
+                    ${answers.join("")}
+                </ul>`
+            )
+            
+        })
+
+        document.getElementById("question-containers").innerHTML = output.join("");
+
+        document.getElementById("question-default").remove();
+        document.getElementById("choiceList-default").remove()
+    }
+
+    } else if(showquestionstype == "two") {
+        var currentQuestion = 0;
+        var viewingAns = 0;
+        var correctAnswers = 0;
+        var quizOver = false;
+        var iSelectedAnswer = [];
+            var c=timerr;
+            var t;
+
+
+        document.getElementsByClassName("result")[0].remove();
+        document.getElementById("question-default").remove();
+        document.getElementById("choiceList-default").remove()
+        message = document.getElementsByClassName("quizMessage")[0]
+        message.style.display = "none";
+
+        c = timerr
+
+        let totalquestionslength = questions.length
+        let totalquestions = document.querySelector("#total-questions")
+        totalquestions.textContent = totalquestionslength
+
+        btn = document.getElementsByClassName("btn-container")[0]
+
+        btn.innerHTML = '<button type="submit" class="submit-btn">Submit</button>'
+
+        document.getElementsByClassName("submit-btn")[0].addEventListener("click", () => {
+            viewResults();
+        })
+
+        function buildQuiz() {
+
+            console.log(questions);
+
+            const output = [];
+
+            questions.forEach((currentQuestion, index) => {
+
+                const answers = [];
+                for (letter in currentQuestion.choices) {
+                    answers.push(
+                    `<li>
+                        <label class="radio-custom-label">
+                            <input type="radio" name="question${index}" value="${letter}" required>  
+                            ${currentQuestion.choices[letter]}
+                            <span class="checkmark"></span>
+                        </label>    
+                    </li>`
+                    );
+                }
+
+                output.push(
+                    `<div class="question">${currentQuestion.question}</div>
+                    <ul class="choiceList">
+                        ${answers.join("")}
+                    </ul>`
+                )
+            });
+
+            document.getElementById("question-containers").innerHTML = output.join("");
+
+            }
+            timedCount();
+
+        }
+        
+        buildQuiz()
+
+        function timedCount()
+        {
+            if(c == undefined) 
+            { 
+                return startTimer(); 
+            }
+            
+            var hours = parseInt( c / 3600 ) % 24;
+            var minutes = parseInt( c / 60 ) % 60;
+            var seconds = c % 60;
+            var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds  < 10 ? "0" + seconds : seconds);            
+            $('#timer').html(result);
+            
+            if(c == 0 )
+            {
+                        $('#iTimeShow').html('Quiz Time Completed!');
+                        $('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
+                        c=185;
+                        quizOver = true;
+                        return endGame();
+                        
+            }
+            c = c - 1;
+            t = setTimeout(function()
+            {
+                timedCount()
+            },1000);
+    }
+    let hours = 0;
+    let mins = 0;
+    let seconds = 0;
+
+    function startTimer(){
+        timex = setTimeout(function(){
+            seconds++;
+            if(seconds >59){seconds=0;mins++;
+            if(mins>59) {
+            mins=0;hours++;
+                if(hours <10) {$("#hours").text('0'+hours+':')} else $("#hours").text(hours+':');
+                            }
+                            
+            if(mins<10){                     
+            $("#mins").text('0'+mins+':');}       
+            else $("#mins").text(mins+':');
+                        }    
+            if(seconds <10) {
+            $("#seconds").text('0'+seconds);} else {
+            $("#seconds").text(seconds);
+            }
+            
+            
+            startTimer();
+        },1000);
+    }
+
+    function getselectedanswers() {
+
+        iSelectedAnswer = []
+
+        let radios = document.getElementsByTagName('input');
+        for (let i=0; i < radios.length; i++) {
+            let option = radios[i]
+            if(option.type == "radio") {
+                if(option.checked) {
+                    iSelectedAnswer.push(option.value)
+                }
+            }
+        }
+
+    }
+
+    // This displays the current question AND the choices
+    function viewResults() 
+    {
+        if(viewingAns == 1) { return false; }
+        getselectedanswers();
+
+        if(iSelectedAnswer.length !== questions.length) {
+            console.log(iSelectedAnswer);
+            message.style.display = "block"
+            return message.textContent = "Please Select All Answers"
+        }
+
+        // var question = questions[currentQuestion].question;
+        var numChoices = questions[currentQuestion].choices.length;
+        // Set the questionClass text to the current question
+        // Remove all current <li> elements (if any)
+        var choice;
+        const output = [];
+
+        questions.forEach((currentQuestion, index) => {
+            const answers = [];
+
+            for (i = 0; i < numChoices; i++) 
+            {
+                choice = questions[index].choices[i];
+                
+                if(iSelectedAnswer[index] == i) {
+                    if(questions[index].correctAnswer == i) {
+                        answers.push('<li style="border:2px solid black;margin-top:10px; background-color: #65F66A"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    } else {
+                        answers.push('<li style="border:2px solid red;margin-top:10px; background-color: red"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    }
+                } else {
+                    if(questions[index].correctAnswer == i) {
+                        answers.push('<li style="border:2px solid green;margin-top:10px; background-color: #65F66A"><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    } else {
+                        answers.push('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' +  ' ' + choice  + '</li>')
+                    }
+                }
+
+            }
+
+            output.push(
+                `<div class="question">${currentQuestion.question}</div>
+                <ul class="choiceList">
+                    ${answers.join("")}
+                </ul>`
+            )
+            
+        })
+
+        document.getElementById("question-containers").innerHTML = output.join("");
+
+        endGame()
+    }
+
+    function endGame() {
+        clearTimeout(timex);
+        let x = document.getElementsByTagName("input");
+        
+        for (let y = 0; y < x.length; y++) {
+            x[y].disabled = true;
+        }
+
+        document.getElementsByClassName("btn-container")[0].innerHTML = `<a class="reset-btn" href='nothimg.html'>Play Again</a> <a class="reset-btn" href="#">Show Score</a>`
+    }
+
+
+
+    }
+
+    </script>
+</html>
